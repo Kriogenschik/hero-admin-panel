@@ -1,0 +1,61 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Первый герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "fire"
+    },
+    {
+      "id": 2,
+      "name": "second герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "water"
+    },
+    {
+      "id": 4,
+      "name": "fourth герой",
+      "description": "Первый герой в рейтинге!",
+      "element": "wind"
+    },
+    {
+      "id": "16b0a0f1-973b-40fe-a072-cbcf985f70e6",
+      "name": "QAs",
+      "description": "gggvx asda sf asf asfsa s",
+      "element": "earth"
+    },
+    {
+      "id": "6057faa7-bf84-4220-8498-ce9958b78bdf",
+      "name": "fsdfas",
+      "description": "gasgdgasdgaggad",
+      "element": "fire"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "All",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "fire",
+      "label": "Fire",
+      "className": "btn-danger"
+    },
+    {
+      "name": "water",
+      "label": "Water",
+      "className": "btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "Wind",
+      "className": "btn-success"
+    },
+    {
+      "name": "earth",
+      "label": "Earth",
+      "className": "btn-secondary"
+    }
+  ]
+}
