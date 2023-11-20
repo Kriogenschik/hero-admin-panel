@@ -3,26 +3,23 @@ import { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
-import {
-  heroesFetching,
-  heroesFetched,
-  heroesFetchingError,
-  heroesDelete,
-} from "../../actions";
+import { heroDeleted, fetchHeroes, filteredHeroesSelector } from "./heroesSlice";
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from "../spinner/Spinner";
 
+import './heroesList.scss';
+
 const HeroesList = () => {
-  const { filteredHeroes, heroesLoadingStatus } = useSelector((state) => state);
+
+  const filteredHeroes = useSelector(filteredHeroesSelector);
+  const heroesLoadingStatus = useSelector(
+    (state) => state.heroes.heroesLoadingStatus
+  );
   const dispatch = useDispatch();
   const { request } = useHttp();
 
   useEffect(() => {
-    dispatch(heroesFetching());
-    request("http://localhost:3001/heroes")
-      .then((data) => dispatch(heroesFetched(data)))
-      .catch(() => dispatch(heroesFetchingError()));
-
+    dispatch(fetchHeroes());
     // eslint-disable-next-line
   }, []);
 
@@ -30,9 +27,10 @@ const HeroesList = () => {
     (id) => {
       const url = `http://localhost:3001/heroes/${id}`;
       request(url, "DELETE")
-        .then(dispatch(heroesDelete(id)))
+        .then(dispatch(heroDeleted(id)))
         .catch((err) => console.log(err));
     },
+    // eslint-disable-next-line
     [request]
   );
 

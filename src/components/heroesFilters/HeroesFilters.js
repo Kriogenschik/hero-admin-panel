@@ -1,13 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classnames";
+import store from '../../store';
 
-import { activeFilterChanged } from '../../actions';
+import { filterChanged, selectAll } from "./heroesFiltersSlice";
 import Spinner from "../spinner/Spinner";
 
 const HeroesFilters = () => {
-  const { filters, filtersLoadingStatus, activeFilter } = useSelector(
-    (state) => state
+  const { filtersLoadingStatus, activeFilter } = useSelector(
+    (state) => state.filters
   );
+  const filters = selectAll(store.getState());
   const dispatch = useDispatch();
 
   if (filtersLoadingStatus === "loading") {
@@ -31,7 +33,7 @@ const HeroesFilters = () => {
           key={name}
           id={name}
           className={btnClass}
-          onClick={() => dispatch(activeFilterChanged(name))}
+          onClick={() => dispatch(filterChanged(name))}
         >
           {label}
         </button>
@@ -45,9 +47,7 @@ const HeroesFilters = () => {
     <div className="card shadow-lg mt-4">
       <div className="card-body">
         <p className="card-text">Отфильтруйте героев по элементам</p>
-        <div className="btn-group">
-          {elements}
-        </div>
+        <div className="btn-group">{elements}</div>
       </div>
     </div>
   );
